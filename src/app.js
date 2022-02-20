@@ -32,6 +32,30 @@ app.get("/mens", async (req, res) => {
   }
 });
 
+// we will handle get req of indiv
+app.get("/mens/:id", async (req, res) => {
+  try {
+    const _id = req.params.id;
+    const getMen = await MensRanking.findById({ _id });
+    res.send(getMen);
+  } catch (e) {
+    console.log(e);
+    res.status(400).send(e);
+  }
+});
+
+// we will handle patch req of indiv
+app.patch("/mens/:id", async (req, res) => {
+  try {
+    const _id = req.params.id;
+    const getMen = await MensRanking.findByIdAndUpdate(_id, req.body);
+    res.send(getMen);
+  } catch (e) {
+    console.log(e);
+    res.status(400).send(e);
+  }
+});
+
 app.get("/", async (req, res) => {
   res.send("Hello World");
 });
