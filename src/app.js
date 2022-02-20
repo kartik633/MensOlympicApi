@@ -21,6 +21,17 @@ app.post("/mens", async (req, res) => {
   }
 });
 
+// we will handle get req
+app.get("/mens", async (req, res) => {
+  try {
+    const getMens = await MensRanking.find({});
+    res.send(getMens);
+  } catch (e) {
+    console.log(e);
+    res.status(400).send(e);
+  }
+});
+
 app.get("/", async (req, res) => {
   res.send("Hello World");
 });
